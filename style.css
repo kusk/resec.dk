@@ -1,3 +1,4 @@
+.dark{ background-color: #010101; color: #fff; }
 .dark a:link, .dark a:visited, .dark a:active { color: #8eb6ff; }
 .dark a:hover {  color: #ED421E; }
 .dark .blinking-cursor { color: #11ff00; }
