@@ -4,6 +4,12 @@
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+         <script>
+            function myFunction() {
+                let element = document.body;
+                element.classList.toggle("dark");
+            }
+        </script>
     </head>
 
     <body>
@@ -12,7 +18,7 @@
                 <p>./resec.dk</p><span class="blinking-cursor">|</span>
             </header>
             <nav>
-                <img src="round200.png" /><br /><br />
+                <img src="round200.png" onclick="myFunction()" /><br /><br />
                 <b>Anders Ernstpriis Kusk</b><br />
                 Pentester/Red Team/Security Advisor<br />
                 mail: a@resec.sh<br />
