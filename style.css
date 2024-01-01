@@ -24,12 +24,13 @@ b
 	color: #28a364;
 	background-color: #f1f1f1;
 	padding: 1px;
+	margin: 1px;
 	font-weight: 100;
 	font-family: JetBrainsMono-medium, Roboto, Arial, sans-serif;
 }
 
 h2 {
-	font: 17px JetBrainsMono-Bold, Roboto, Arial, sans-serif;
+	font: 19px JetBrainsMono-Bold, Roboto, Arial, sans-serif;
 	margin: 0;
 	padding: 0;
 }
