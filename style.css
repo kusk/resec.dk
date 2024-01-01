@@ -22,6 +22,9 @@ font: 12px Roboto, Arial, sans-serif;
 b
 {
 	color: #28a364;
+		background-color: #fafafa;
+	font-weight: 100;
+	font-family: JetBrainsMono-light, Roboto, Arial, sans-serif;
 }
 
 
