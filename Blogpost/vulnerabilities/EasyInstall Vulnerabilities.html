@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+        <head>
+                <!-- Page information -->
+                <meta charset="UTF-8" />
+                <meta name="node_id" content="easyinstall vulnerabilities">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="shortcut icon" href="/favicon.ico" />
+
+                <!-- Set title -->
+                <title>resec.dk</title>
+
+                <!-- Includes -->
+                <script src="/obs.html/static/obsidian_core.js"></script>
+<script src="/obs.html/static/encoding.js"></script>
+<link rel="stylesheet" href="/obs.html/static/master.css" />
+<script src="https://unpkg.com/smiles-drawer@2.0.3/dist/smiles-drawer.min.js"></script><script src="/obs.html/static/smiles.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+            'securityLevel': 'loose',
+            'theme': 'dark',
+            'themeVariables': {
+                    'darkMode': true,
+            }
+    });
+</script>
+<script>
+  MathJax = {
+    loader: {
+      load: [
+        '[tex]/action',
+        'output/chtml',
+        '[tex]/centernot'
+      ]
+    },
+    tex: {
+      inlineMath: [ ["\\(","\\)"] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {'[+]': ['centernot']}
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script src="/obs.html/static/dirtree.js"></script>
+<link rel="stylesheet" href="/custom.css" />
+
+
+
+                <!-- Onload tweaks -->
+                <script>
+                        const CURRENT_NODE = 'easyinstall vulnerabilities';
+                        const PAGE_DEPTH = 2;
+                </script>
+        </head>
+
+<body class="theme-obs-light">
+        <div id="antiflash" style="display: none;"></div>
+        <script>
+                document.getElementById('antiflash').style.display = 'block';
+        </script>
+        
+        <div id="page_holder" class="flex_col">
+                <div id="header" class="header" style="position:fixed">
+                        <div id="header_flex" class="flex_row">
+                                <a href="/index.html" id="homelink" title="Clear screen and go to homepage">resec.dk</a>
+                                <div class="navbar-button" onclick="toggle_menu()">
+                                        ≡
+                                </div>
+                                <div id="navbar" class="navbar">
+                                        
+                                        <a href="/">resec.dk</a>
+                                        <div class="icon-tray">
+                                                
+                                                
+                                                
+                                        
+                                                
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        
+                </div>
+                <div id="header2" class="header">
+                        <div id="header_flex2" class="flex_row">
+                                <a href="/index.html" id="homelink" title="Clear screen and go to homepage">/resec.dk</a>
+                                <div class="navbar-button" onclick="toggle_menu()">
+                                        ≡
+                                </div>
+                                <div id="navbar2" class="navbar">
+                                        
+                                        <div class="icon-tray">
+                                                
+                                                
+                                                
+                                                        <div >
+            <a id="dirtree_link" class="system-link" href="/obs.html/dir_index.html" title="View directory tree">
+                    <img src = "/obs.html/static/dirtree.svg" style="width: 12px; padding: 4px;" alt="Directory tree link"/>
+            </a>
+        </div>
+                                                
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        
+                </div>
+                <div class="flex_row" id="container_row">
+                        <div class="container-wrapper ">
+                                <div class="container">
+                                <div class="content"><h1 id="easyinstall-various-vulnerabilities">EasyInstall - Various vulnerabilities</h1>
+<p>Also published here: <a href="https://blog.improsec.com/tech-blog/multiple-vulnerabilities-in-easyinstall-rmm-and-deployment-software" class="external-link">Multiple vulnerabilities in EasyInstall RMM and deployment software — Improsec | improving security</a>   </p>
+<p>This blog post highlights bugs found in installed software during a customer engagement and reported aligned with the Improsec <a href="https://cowbell-sawfish-n24m.squarespace.com/responsible-disclosure" class="external-link">Responsible Disclosure Policy</a>.   </p>
+<h3 id="timeline"><strong>Timeline</strong></h3>
+<ul>
+<li>Improsec identified the vulnerabilities during a customer engagement. Each vulnerability was validated in a simulated Active Directory Lab afterwards.   </li>
+<li>The vulnerabilities were disclosed to the vendor, IXP Data, on November 11 of 2019.   </li>
+<li>IXP Data releases EasyInstall version 6.3.101 which patches all six vulnerabilities on November 15 of 2019.   </li>
+<li>We want to thank IXP Data for an effective and professional response.   </li>
+</ul>
+<h2 id="cves-registered-see-appendix-for-more-details">CVEs registered (see appendix for more details)</h2>
+<ul>
+<li>CVE #1: <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19897" class="external-link">CVE-2019-19897</a> - Remote Code Execution as SYSTEM via EasyInstall Agent Service   </li>
+<li>CVE #2: <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19896" class="external-link">CVE-2019-19896</a> - Remote Code Execution as SYSTEM via weak permissions on EasyInstall Engine Service share   </li>
+<li>CVE #3: <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19893" class="external-link">CVE-2019-19893</a> - Directory Traversal (TCP 8000) as SYSTEM via EasyInstall Engine Service   </li>
+<li>CVE #4: <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19895" class="external-link">CVE-2019-19895</a> - Lateral Movement using EasyInstall Agent Service against other users on client system   </li>
+<li>CVE #5: <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19894" class="external-link">CVE-2019-19894</a> - Disable UAC using EasyInstall Agent Service on client system   </li>
+<li>CVE #6: <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19898" class="external-link">CVE-2019-19898</a> - Clear-text credentials in network communication (TCP 20050) when using EasyInstall Admininistrator console     </li>
+</ul>
+<h2 id="what-is-easyinstall-ixp">What is EasyInstall (IXP)</h2>
+<p>EasyInstall is a remote management and deployment suite created by IXP Data. A typical setup consists of a EasyInstall Server and various clients each with a EasyInstall agent installed. The agent runs as a service executable on deployed Windows clients.   </p>
+<p>The affected and tested version is: 6.2.13723   </p>
+<h2 id="remote-code-execution-as-system-via-easyinstall-agent-service">Remote Code Execution as SYSTEM via EasyInstall Agent Service</h2>
+<p>Remote Code Execution as SYSTEM via EasyInstall Agent Service   </p>
+<p>The EasyInstall admin management client features a remote command execution function. This function connects via TCP-port 20051 to the agent on the selected client. By intercepting the TCP-packet with Wireshark we found that the agent performed no authentication or origin check when receiving the TCP-packet <br />
+<img alt="" src="/Blogpost/vulnerabilities/Attachments/b9b9848e8a7276f3f35a941dfa2ff309_MD5.png" />   </p>
+<p>The default packet structure contained various information, however much of the data could be omitted. The required packet structure consists of: <br />
+1. Header bytes(x37x09) <br />
+2. Server name(not needed) <br />
+3. Separator byte(x09) <br />
+4. Server IP(not needed) <br />
+5. Separator byte(x09) <br />
+6. Server name in lowercase(not needed) <br />
+7. Separator byte(x09) <br />
+8. Agent hostname <br />
+9. Separator byte(x09) <br />
+10. Port(not needed) <br />
+11. Separator byte(x09) <br />
+12. Agent version @ server name(not needed) <br />
+13. Separator byte(x09) <br />
+14. Command to execute   </p>
+<p>A simple python script sending the above packet from any computer on the LAN would gain remote code execution as “NT AUTHORITY” on the client. <br />
+<img alt="" src="/Blogpost/vulnerabilities/Attachments/89acfcf756c3088d77511788e0919e80_MD5.png" />   </p>
+<p>Command executed as a childprocess of IXPAS64.EXE <br />
+<img alt="" src="/Blogpost/vulnerabilities/Attachments/ae248fc7963a196e183a74b058787cb3_MD5.png" />   </p>
+<h2 id="recommendation">Recommendation</h2>
+<p>Update to the newest version of EasyInstall.     </p>
+<h2 id="remote-code-execution-as-system-via-weak-permissions-on-easyinstall-engine-service-share">Remote Code Execution as SYSTEM via weak permissions on EasyInstall Engine Service share</h2>
+<p><strong>CVE-ID: CVE-2019-19896</strong>   </p>
+<p>The default EasyInstall installation creates a network share called “IXP$” on the EasyInstall server. Authenticated Active Directory users has read/write rights to this share and some of its sub-directories. This allows for multiple ways to perform remote code execution on the EasyInstall server and its clients as well as privileged escalation on clients.   </p>
+<p>To perform remote code execution on the EasyInstall server, we edited and inserted commands into the BAT-file “Report.bat” in the sub-directory “AUTOMATION”. This file is executed when EasyInstall either automatic or manual creates usage reports. The BAT-file is executed as “NT AUTHORITY/SYSTEM” on the EasyInstall server.   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/cad21d649e7ac56cc7aa6c47ae1ec6a3_MD5.png" /> <br />
+<em>Full access rights to IXP$ share for authenticated users</em>   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/ed2477b08fa79bb72b75f72bb670c9ba_MD5.png" />   </p>
+<p><em>Adding commands to writable BAT-files on IXP server share</em>   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/b5795436cca81352b27d5db2398d9ff4_MD5.png" />   </p>
+<p><em>Remote code execution on IXP server</em>   </p>
+<h3 id="recommendation_1"><strong>Recommendation</strong></h3>
+<p>Update to the newest version of EasyInstall.   </p>
+<h2 id="directory-traversal-tcp-8000-as-system-via-easyinstall-engine-service">Directory Traversal (TCP 8000) as SYSTEM via EasyInstall Engine Service</h2>
+<p><strong>CVE-ID: CVE-2019-19893</strong>   </p>
+<p>The EasyInstall server deploys by default a custom created web-server on TCP-port 8000. This custom web-server serves the IXP-data directory to any visitors connecting to the web-server. By performing a directory traversal it was possible to access any file on the IXP server in the user context of “NT AUTHORITY”.   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/e06ae630e8f7523f3e3bf10f2155b0b4_MD5.png" />   </p>
+<p><em>Performing directory traversal</em>   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/dd3ef17812ac6019814544bea1793d00_MD5.png" />   </p>
+<p><em>Performing directory traversal to directory restricted to local administrator</em>   </p>
+<h3 id="recommendation_2"><strong>Recommendation</strong></h3>
+<p>Update to the newest version of EasyInstall   </p>
+<h2 id="lateral-movement-using-easyinstall-agent-service-against-other-users-on-client-system">Lateral Movement using EasyInstall Agent Service against other users on client system</h2>
+<p><strong>CVE-ID: CVE-2019-19895</strong>   </p>
+<p>When deploying software packages to a client system the sub-directory “C:” is used as a storage directory for various installation and configuration files. Each software package is placed in a sub-directory with a defined name(fx. AND00001 or SW000231). All authenticated users have read/write rights to these subdirectories and their content. On user logon the EasyInstall agent will traverse each “C:” sub-directory for BAT-files named “EveryLogon.bat” and execute them in the context of the logged on user.   </p>
+<p>By inserting commands into a “EveryLogon.bat” file, we were able to perform lateral movement on the client system.   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/7b3cea1de2e610e549f26570425a8590_MD5.png" />   </p>
+<p><em>File permissions to “EveryLogon.bat”</em>   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/089e3946f17cbe9ceffa43cdd4ccfb97_MD5.png" />   </p>
+<p><em>Inserting commands into BAT-file.</em>   </p>
+<h3 id="recommendation_3"><strong>Recommendation</strong></h3>
+<p>Update to the newest version of EasyInstall   </p>
+<h2 id="disable-uac-using-easyinstall-agent-service-on-client-system">Disable UAC using EasyInstall Agent Service on client system</h2>
+<p><strong>CVE-ID: CVE-2019-19894</strong>   </p>
+<p>The IXP agent is by default installed to the directory “C:”. This directory is read/write/view restricted by default, however the sub-directory “C:”, which contains the agents configuration files, isn’t restricted for modification of the contained files. This allowed us to create a modified version of the configuration-file “IXPAS.IXP” and rename the original to another filename. The configuration file contained the option: “DisableUAC” which by default enabled UAC. Setting the value to “0” and rebooting the client system disabled UAC for all users. Performing one more reboot restored the default settings.   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/d9b82ae1b1d926c8b31cec28bf832616_MD5.png" />   </p>
+<p><em>UAC enabled by default</em>   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/b7a7c685f9dca27e0e159a4da140659b_MD5.png" />   </p>
+<p><em>Disabling UAC via modified “IXPAS.IXP”</em>   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/27840741072c1d068dfd9d398195ba0d_MD5.png" />   </p>
+<p><em>UAC disabled after reboot</em>   </p>
+<h3 id="recommendation_4"><strong>Recommendation</strong></h3>
+<p>Update to the newest version of EasyInstall   </p>
+<h2 id="clear-text-credentials-in-network-communication-tcp-20050-when-using-easyinstall-administrator-console">Clear-text credentials in network communication (TCP 20050) when using EasyInstall Administrator console</h2>
+<p><strong>CVE-ID: CVE-2019-19898</strong>   </p>
+<p>The IXP Administrator application “IXPADM64.EXE” is used by IXP administrators to connect to the deployed IXP server. The application is either used to connect to localhost or a remote server. When using a remote server the administrator username and password is send in clear text to the IXP server instance during login.   </p>
+<p><img alt="" src="/Blogpost/vulnerabilities/Attachments/73d9bd59793b1fa6c0a62d12dbd843a5_MD5.png" />   </p>
+<p><em>Username “easyinstall_adm” and password(hidden with red block) in TCP-packet.</em>   </p>
+<p><strong>Recommendation</strong>   </p>
+<p>Update to the newest version of EasyInstall   </p>
+<p>(Updated January 23, fixed CVE IDs and links)</p></div>
+<div class="note-footer">
+<div class="tags">
+
+</div>
+
+</div>
+
+                                <!-- end content -->
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <script src="/obs.html/static/obsidian_tabs_footer.js" type="text/javascript"></script>
+
+        
+
+</body>
+</html>

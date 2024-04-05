@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+        <head>
+                <!-- Page information -->
+                <meta charset="UTF-8" />
+                <meta name="node_id" content="none">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="shortcut icon" href="/favicon.ico" />
+
+                <!-- Set title -->
+                <title>resec.dk</title>
+
+                <!-- Includes -->
+                <script src="/obs.html/static/obsidian_core.js"></script>
+<script src="/obs.html/static/encoding.js"></script>
+<link rel="stylesheet" href="/obs.html/static/master.css" />
+<script src="https://unpkg.com/smiles-drawer@2.0.3/dist/smiles-drawer.min.js"></script><script src="/obs.html/static/smiles.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+            'securityLevel': 'loose',
+            'theme': 'dark',
+            'themeVariables': {
+                    'darkMode': true,
+            }
+    });
+</script>
+<script>
+  MathJax = {
+    loader: {
+      load: [
+        '[tex]/action',
+        'output/chtml',
+        '[tex]/centernot'
+      ]
+    },
+    tex: {
+      inlineMath: [ ["\\(","\\)"] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {'[+]': ['centernot']}
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script src="/obs.html/static/dirtree.js"></script>
+<link rel="stylesheet" href="/custom.css" />
+
+
+
+                <!-- Onload tweaks -->
+                <script>
+                        const CURRENT_NODE = 'none';
+                        const PAGE_DEPTH = 1;
+                </script>
+        </head>
+
+<body class="theme-obs-light">
+        <div id="antiflash" style="display: none;"></div>
+        <script>
+                document.getElementById('antiflash').style.display = 'block';
+        </script>
+        
+        <div id="page_holder" class="flex_col">
+                <div id="header" class="header" style="position:fixed">
+                        <div id="header_flex" class="flex_row">
+                                <a href="/index.html" id="homelink" title="Clear screen and go to homepage">resec.dk</a>
+                                <div class="navbar-button" onclick="toggle_menu()">
+                                        ≡
+                                </div>
+                                <div id="navbar" class="navbar">
+                                        
+                                        <a href="/">resec.dk</a>
+                                        <div class="icon-tray">
+                                                
+                                                
+                                                
+                                        
+                                                
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        
+                </div>
+                <div id="header2" class="header">
+                        <div id="header_flex2" class="flex_row">
+                                <a href="/index.html" id="homelink" title="Clear screen and go to homepage">/resec.dk</a>
+                                <div class="navbar-button" onclick="toggle_menu()">
+                                        ≡
+                                </div>
+                                <div id="navbar2" class="navbar">
+                                        
+                                        <div class="icon-tray">
+                                                
+                                                
+                                                
+                                                        <div >
+            <a id="dirtree_link" class="system-link" href="/obs.html/dir_index.html" title="View directory tree">
+                    <img src = "/obs.html/static/dirtree.svg" style="width: 12px; padding: 4px;" alt="Directory tree link"/>
+            </a>
+        </div>
+                                                
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        
+                </div>
+                <div class="flex_row" id="container_row">
+                        <div class="container-wrapper single_tab_page-left-aligned">
+                                <div class="container">
+                                <div id="dirtree"><button id="folder-1" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>Blogpost</button>
+<div id="folder-container-1" class="dir-container requires_js " path="/Blogpost">
+	<button id="folder-2" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>Attachments</button>
+	<div id="folder-container-2" class="dir-container requires_js " path="/Blogpost/Attachments">
+		<ul class="dir-list">
+			<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/Attachments/bc7091bc43039410f0a983a84a795369_MD5.png"  class="external-link">bc7091bc43039410f0a983a84a795369_MD5.png</a></li>
+		</ul>
+	</div>
+	<button id="folder-3" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>other</button>
+	<div id="folder-container-3" class="dir-container requires_js " path="/Blogpost/other">
+		<button id="folder-4" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>Minkgate</button>
+		<div id="folder-container-4" class="dir-container requires_js " path="/Blogpost/other/Minkgate">
+			<ul class="dir-list">
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/other/Minkgate/1.png"  class="external-link">1.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/other/Minkgate/2.png"  class="external-link">2.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/other/Minkgate/3.png"  class="external-link">3.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/other/Minkgate/4.png"  class="external-link">4.png</a></li>
+			</ul>
+		</div>
+		<ul class="dir-list">
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/other/LXC Transmission Nordvpn.html"  >LXC Transmission Nordvpn</a></li>
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/other/Minkgate.html"  >Minkgate</a></li>
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/other/Ofsec Certificates.html"  >Ofsec Certificates</a></li>
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/other/Press.html"  >Press</a></li>
+		</ul>
+	</div>
+	<button id="folder-5" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>software</button>
+	<div id="folder-container-5" class="dir-container requires_js " path="/Blogpost/software">
+		<ul class="dir-list">
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/software/RustyNinja.html"  >RustyNinja</a></li>
+		</ul>
+	</div>
+	<button id="folder-6" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>vulnerabilities</button>
+	<div id="folder-container-6" class="dir-container requires_js " path="/Blogpost/vulnerabilities">
+		<button id="folder-7" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>Attachments</button>
+		<div id="folder-container-7" class="dir-container requires_js " path="/Blogpost/vulnerabilities/Attachments">
+			<ul class="dir-list">
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/004797260593c41fc85ad2ba5417806c_MD5.png"  class="external-link">004797260593c41fc85ad2ba5417806c_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/031661c7972a8db3c4042c46509fbadb_MD5.png"  class="external-link">031661c7972a8db3c4042c46509fbadb_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/089e3946f17cbe9ceffa43cdd4ccfb97_MD5.png"  class="external-link">089e3946f17cbe9ceffa43cdd4ccfb97_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/0d8e3831c40e0a2686a397a46eb8b7e4_MD5.jpg"  class="external-link">0d8e3831c40e0a2686a397a46eb8b7e4_MD5.jpg</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/0f449fd2999c9556b8a402a8cd621276_MD5.png"  class="external-link">0f449fd2999c9556b8a402a8cd621276_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/0f8fa02bdd59cec184f7b77b4f94bb86_MD5.png"  class="external-link">0f8fa02bdd59cec184f7b77b4f94bb86_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/11393308cdae5d12ec9ffefb12270205_MD5.png"  class="external-link">11393308cdae5d12ec9ffefb12270205_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/1189f12148fc860e68e0412dc9f98ba6_MD5.png"  class="external-link">1189f12148fc860e68e0412dc9f98ba6_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/1689be428fe0d4c7c97fc6bfe5244fe1_MD5.png"  class="external-link">1689be428fe0d4c7c97fc6bfe5244fe1_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/1ae81b7e48082bc42e32a970d46fbcd0_MD5.png"  class="external-link">1ae81b7e48082bc42e32a970d46fbcd0_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/1af0d30036dcf6c4001c9236db4e7d1f_MD5.png"  class="external-link">1af0d30036dcf6c4001c9236db4e7d1f_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/1d0b00c022c2d36713b720044c9f5fdd_MD5.png"  class="external-link">1d0b00c022c2d36713b720044c9f5fdd_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/27840741072c1d068dfd9d398195ba0d_MD5.png"  class="external-link">27840741072c1d068dfd9d398195ba0d_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/3.png"  class="external-link">3.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/3089d60d59bd1f1057e9c3a4070f5a72_MD5.png"  class="external-link">3089d60d59bd1f1057e9c3a4070f5a72_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/354b42e769b0b5bf5e54a897b3a88187_MD5.png"  class="external-link">354b42e769b0b5bf5e54a897b3a88187_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/370184d57ffbe8fbf0c19592d384f923_MD5.png"  class="external-link">370184d57ffbe8fbf0c19592d384f923_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/380e3419041a8eb01a64eb0da8b5eae6_MD5.png"  class="external-link">380e3419041a8eb01a64eb0da8b5eae6_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/3cfeb87aa44e3dcb7310154d66dde52d_MD5.png"  class="external-link">3cfeb87aa44e3dcb7310154d66dde52d_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/4.png"  class="external-link">4.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/40b7c82430805c315190ef146d8bdc16_MD5.png"  class="external-link">40b7c82430805c315190ef146d8bdc16_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/439d02e466876763af86d4bd7645df21_MD5.png"  class="external-link">439d02e466876763af86d4bd7645df21_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/4ebf46962ae88d7a7930c40d6bc0e333_MD5.png"  class="external-link">4ebf46962ae88d7a7930c40d6bc0e333_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/5f27efacf9edb61d78fc2da868a0412a_MD5.png"  class="external-link">5f27efacf9edb61d78fc2da868a0412a_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/63b675cb770b0812230808df8dacb013_MD5.png"  class="external-link">63b675cb770b0812230808df8dacb013_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/6cbdbfbc8f3f8a3ff30a24cdad99333a_MD5.png"  class="external-link">6cbdbfbc8f3f8a3ff30a24cdad99333a_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/6d46cef844b107d6f05eaecf27dd1fd6_MD5.png"  class="external-link">6d46cef844b107d6f05eaecf27dd1fd6_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/73d9bd59793b1fa6c0a62d12dbd843a5_MD5.png"  class="external-link">73d9bd59793b1fa6c0a62d12dbd843a5_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/767ce544a153311342022ffe49d46ede_MD5.png"  class="external-link">767ce544a153311342022ffe49d46ede_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/775f4111003e72ce7b3d3681f53bbf7e_MD5.png"  class="external-link">775f4111003e72ce7b3d3681f53bbf7e_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/77c915bcdbbcc62d398fcab0b603266b_MD5.png"  class="external-link">77c915bcdbbcc62d398fcab0b603266b_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/798999344973db145dd2364b4fe2a57d_MD5.png"  class="external-link">798999344973db145dd2364b4fe2a57d_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/7b3cea1de2e610e549f26570425a8590_MD5.png"  class="external-link">7b3cea1de2e610e549f26570425a8590_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/8558800c57fc620194b36a5e9d5ebf76_MD5.png"  class="external-link">8558800c57fc620194b36a5e9d5ebf76_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/867433f2a5ba300683bdc0444ad377e8_MD5.png"  class="external-link">867433f2a5ba300683bdc0444ad377e8_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/89acfcf756c3088d77511788e0919e80_MD5.png"  class="external-link">89acfcf756c3088d77511788e0919e80_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/8a530dd89da68524c4c33970457d3058_MD5.png"  class="external-link">8a530dd89da68524c4c33970457d3058_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/8a8b54eb4b343be39a72fe193e2a5741_MD5.png"  class="external-link">8a8b54eb4b343be39a72fe193e2a5741_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/8ec9faf305acd3adf1cc64c47cb750e2_MD5.png"  class="external-link">8ec9faf305acd3adf1cc64c47cb750e2_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/938c34fb785b60683db8e8a4f1a50766_MD5.png"  class="external-link">938c34fb785b60683db8e8a4f1a50766_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/93ee3bb56338beeb3a15c76f358272aa_MD5.png"  class="external-link">93ee3bb56338beeb3a15c76f358272aa_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/9c07a8cd50f195f330a60984bc702813_MD5.png"  class="external-link">9c07a8cd50f195f330a60984bc702813_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/9f66f0542d8f2c5566ed917960884052_MD5.png"  class="external-link">9f66f0542d8f2c5566ed917960884052_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/Picture5.png"  class="external-link">Picture5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/Picture6.png"  class="external-link">Picture6.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/Picture7.png"  class="external-link">Picture7.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/a.png"  class="external-link">a.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/a 1.png"  class="external-link">a 1.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/a 2.png"  class="external-link">a 2.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/a 3.png"  class="external-link">a 3.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/a 4.png"  class="external-link">a 4.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/a 5.png"  class="external-link">a 5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/a 6.png"  class="external-link">a 6.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/a053ffd5508bdaba5e55c618368694bb_MD5.png"  class="external-link">a053ffd5508bdaba5e55c618368694bb_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/a43988b242921cbf0f424ca1e371c7ac_MD5.png"  class="external-link">a43988b242921cbf0f424ca1e371c7ac_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/ac5d28b9cc8346baf9568c24c1b02786_MD5.png"  class="external-link">ac5d28b9cc8346baf9568c24c1b02786_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/ae248fc7963a196e183a74b058787cb3_MD5.png"  class="external-link">ae248fc7963a196e183a74b058787cb3_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/b5795436cca81352b27d5db2398d9ff4_MD5.png"  class="external-link">b5795436cca81352b27d5db2398d9ff4_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/b7a7c685f9dca27e0e159a4da140659b_MD5.png"  class="external-link">b7a7c685f9dca27e0e159a4da140659b_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/b9b9848e8a7276f3f35a941dfa2ff309_MD5.png"  class="external-link">b9b9848e8a7276f3f35a941dfa2ff309_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/badb3374c842ce0e0b745860f8c19db7_MD5.png"  class="external-link">badb3374c842ce0e0b745860f8c19db7_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/cad21d649e7ac56cc7aa6c47ae1ec6a3_MD5.png"  class="external-link">cad21d649e7ac56cc7aa6c47ae1ec6a3_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/cc2fbda4593715455b4c97015b904f0a_MD5.png"  class="external-link">cc2fbda4593715455b4c97015b904f0a_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/d2371fbfdd557b52a49286b9aec5bbb9_MD5.png"  class="external-link">d2371fbfdd557b52a49286b9aec5bbb9_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/d9b82ae1b1d926c8b31cec28bf832616_MD5.png"  class="external-link">d9b82ae1b1d926c8b31cec28bf832616_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/dba1aa70dc09519909c2f765cd608068_MD5.png"  class="external-link">dba1aa70dc09519909c2f765cd608068_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/dd3ef17812ac6019814544bea1793d00_MD5.png"  class="external-link">dd3ef17812ac6019814544bea1793d00_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/e06ae630e8f7523f3e3bf10f2155b0b4_MD5.png"  class="external-link">e06ae630e8f7523f3e3bf10f2155b0b4_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/ed2477b08fa79bb72b75f72bb670c9ba_MD5.png"  class="external-link">ed2477b08fa79bb72b75f72bb670c9ba_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/fe3fe44aa822268c64636ee381378f18_MD5.png"  class="external-link">fe3fe44aa822268c64636ee381378f18_MD5.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/image-asset.png"  class="external-link">image-asset.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/image-asset 1.png"  class="external-link">image-asset 1.png</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/Blogpost/vulnerabilities/Attachments/image-asset 2.png"  class="external-link">image-asset 2.png</a></li>
+			</ul>
+		</div>
+		<ul class="dir-list">
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/vulnerabilities/CVE-2020-12302.html"  >CVE-2020-12302</a></li>
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/vulnerabilities/CVE-2020-12431.html"  >CVE-2020-12431</a></li>
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/vulnerabilities/CVE-2020-8342.html"  >CVE-2020-8342</a></li>
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/vulnerabilities/CVE-2020-8345.html"  >CVE-2020-8345</a></li>
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/vulnerabilities/CVE-2020-8614.html"  >CVE-2020-8614</a></li>
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/vulnerabilities/EasyInstall Vulnerabilities.html"  >EasyInstall Vulnerabilities</a></li>
+			<li><div class="file-icon"></div><a class="" href="/Blogpost/vulnerabilities/MSI Vulnerabilities.html"  >MSI Vulnerabilities</a></li>
+		</ul>
+	</div>
+	<ul class="dir-list">
+	</ul>
+</div>
+<ul class="dir-list">
+	<li><div class="file-icon"></div><a class="" href="/index.html"  >index</a></li>
+</ul>
+</div>
+                                <!-- end content -->
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <script src="/obs.html/static/obsidian_tabs_footer.js" type="text/javascript"></script>
+
+        
+
+</body>
+</html>

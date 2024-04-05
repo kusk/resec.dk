@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+        <head>
+                <!-- Page information -->
+                <meta charset="UTF-8" />
+                <meta name="node_id" content="lxc transmission nordvpn">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="shortcut icon" href="/favicon.ico" />
+
+                <!-- Set title -->
+                <title>resec.dk</title>
+
+                <!-- Includes -->
+                <script src="/obs.html/static/obsidian_core.js"></script>
+<script src="/obs.html/static/encoding.js"></script>
+<link rel="stylesheet" href="/obs.html/static/master.css" />
+<script src="https://unpkg.com/smiles-drawer@2.0.3/dist/smiles-drawer.min.js"></script><script src="/obs.html/static/smiles.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+            'securityLevel': 'loose',
+            'theme': 'dark',
+            'themeVariables': {
+                    'darkMode': true,
+            }
+    });
+</script>
+<script>
+  MathJax = {
+    loader: {
+      load: [
+        '[tex]/action',
+        'output/chtml',
+        '[tex]/centernot'
+      ]
+    },
+    tex: {
+      inlineMath: [ ["\\(","\\)"] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {'[+]': ['centernot']}
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script src="/obs.html/static/dirtree.js"></script>
+<link rel="stylesheet" href="/custom.css" />
+
+
+
+                <!-- Onload tweaks -->
+                <script>
+                        const CURRENT_NODE = 'lxc transmission nordvpn';
+                        const PAGE_DEPTH = 2;
+                </script>
+        </head>
+
+<body class="theme-obs-light">
+        <div id="antiflash" style="display: none;"></div>
+        <script>
+                document.getElementById('antiflash').style.display = 'block';
+        </script>
+        
+        <div id="page_holder" class="flex_col">
+                <div id="header" class="header" style="position:fixed">
+                        <div id="header_flex" class="flex_row">
+                                <a href="/index.html" id="homelink" title="Clear screen and go to homepage">resec.dk</a>
+                                <div class="navbar-button" onclick="toggle_menu()">
+                                        ≡
+                                </div>
+                                <div id="navbar" class="navbar">
+                                        
+                                        <a href="/">resec.dk</a>
+                                        <div class="icon-tray">
+                                                
+                                                
+                                                
+                                        
+                                                
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        
+                </div>
+                <div id="header2" class="header">
+                        <div id="header_flex2" class="flex_row">
+                                <a href="/index.html" id="homelink" title="Clear screen and go to homepage">/resec.dk</a>
+                                <div class="navbar-button" onclick="toggle_menu()">
+                                        ≡
+                                </div>
+                                <div id="navbar2" class="navbar">
+                                        
+                                        <div class="icon-tray">
+                                                
+                                                
+                                                
+                                                        <div >
+            <a id="dirtree_link" class="system-link" href="/obs.html/dir_index.html" title="View directory tree">
+                    <img src = "/obs.html/static/dirtree.svg" style="width: 12px; padding: 4px;" alt="Directory tree link"/>
+            </a>
+        </div>
+                                                
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        
+                </div>
+                <div class="flex_row" id="container_row">
+                        <div class="container-wrapper ">
+                                <div class="container">
+                                <div class="content"><h1 id="setting-up-af-lxc-container-with-nordvpn-killswitch-firewall-and-transmission">Setting up af LXC container with NordVPN, Killswitch Firewall and Transmission</h1>
+<h2 id="optional-setup-mounted-share">Optional: Setup mounted share</h2>
+<p>If you want to download files to a mount SMB share you need to do the following:   </p>
+<div class="codehilite"><pre><span></span><code>apk add cifs-utils   
+mkdir /torrents   
+</code></pre></div>
+
+<p>Add the following to "/etc/fstab". Customize for your environment.   </p>
+<div class="lang-general">
+
+<div class="codehilite"><pre><span></span><code><span class="c1">//192.168.178.30/torrents    /torrents    cifs    uid=0,gid=0,user=janhapke,password=*****,_netdev 0 0</span>
+</code></pre></div>
+
+
+</div>
+
+<p>In my case enabling netmount didn't ensure that the share was automounted, so I created a custom starter script.   </p>
+<p>Create "/etc/local.d/mounter.start" with the following content:   </p>
+<div class="lang-general">
+
+<div class="codehilite"><pre><span></span><code>mount -a
+</code></pre></div>
+
+
+</div>
+
+<p>And add the service:   </p>
+<div class="codehilite"><pre><span></span><code>rc-update add local default   
+</code></pre></div>
+
+<p>Now  the share should automount upon boot.   </p>
+<h2 id="setup-firewall-and-openvpn-with-nordvpn">Setup firewall and Openvpn with NordVPN</h2>
+<p>To ensure the container is only communicating with the internet via the VPN, the following needs to be done. We also allow communication to the container via LAN without the VPN.   </p>
+<p>Install the firewall.   </p>
+<div class="codehilite"><pre><span></span><code>apk add ip6tables ufw   
+</code></pre></div>
+
+<p>Add the following to "/etc/sysctl.conf" to disable ipv6.   </p>
+<div class="codehilite"><pre><span></span><code>net.ipv6.conf.all.disable_ipv6=1   
+net.ipv6.conf.default.disable_ipv6=1   
+net.ipv6.conf.lo.disable_ipv6=1   
+</code></pre></div>
+
+<p>Update sysctl   </p>
+<div class="codehilite"><pre><span></span><code>sysctl -p   
+</code></pre></div>
+
+<p>You can now check if "/proc/sys/net/ipv6/conf/all/disable_ipv6" is set to 1.   </p>
+<p>Also disable ipv6 in ufw by changing "IPV6=yes" in "/etc/default/ufw" to:   </p>
+<div class="codehilite"><pre><span></span><code>IPV6=no   
+</code></pre></div>
+
+<p>And now temporarily disable ufw:   </p>
+<div class="codehilite"><pre><span></span><code>ufw disable   
+</code></pre></div>
+
+<p>In order to setup a VPN kill switch in UFW, you need three pieces of information:   </p>
+<ul>
+<li>The <strong>public IP address</strong> of the VPN server you connect to   </li>
+<li>The <strong>port and protocol</strong> your server uses to communicate   </li>
+<li>The <strong>subnet</strong> of your local network   </li>
+</ul>
+<p>You can download NordVPN config files from: <a href="https://nordvpn.com/da/ovpn/" class="external-link">https://nordvpn.com/da/ovpn/</a> <br />
+Download the one you want or all of them and place them in "/etc/openvpn". Name the one you want to use and place it at "/etc/openvpn/nordvpn.ovpn"   </p>
+<p>The firewall rules to allow LAN and disable everything to WAN except to the VPN-ip(156.67.85.16) on port 1194(udp):   </p>
+<div class="codehilite"><pre><span></span><code>ufw allow in to **192.168.1.0/24**   
+ufw allow out to **192.168.1.0/24**   
+ufw default deny outgoing   
+ufw default deny incoming   
+ufw allow out to 156.67.85.16 port 1194 proto udp   
+ufw allow out on tun0 from any to any   
+</code></pre></div>
+
+<p>Then you need your NordVPN username and password. Find at: <a href="https://my.nordaccount.com/dashboard/nordvpn/" class="external-link">https://my.nordaccount.com/dashboard/nordvpn/</a>   </p>
+<p>On proxmox server you need to add this setting to your LXC container. Add to "/etc/pve/lxc/[Container ID].conf" and reboot lxc container   </p>
+<div class="lang-general">
+
+<div class="codehilite"><pre><span></span><code>lxc.cgroup2.devices.allow:<span class="w"> </span>c<span class="w"> </span>10:200<span class="w"> </span>rwm
+lxc.hook.autodev:<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span>&quot;modprobe<span class="w"> </span>tun;<span class="w"> </span>cd<span class="w"> </span><span class="cp">${</span><span class="n">LXC_ROOTFS_MOUNT</span><span class="cp">}</span>/dev;<span class="w"> </span>mkdir<span class="w"> </span>net;<span class="w"> </span>mknod<span class="w"> </span>net/tun<span class="w"> </span>c<span class="w"> </span>10<span class="w"> </span>200;<span class="w"> </span>chmod<span class="w"> </span>0666<span class="w"> </span>net/tun&quot;
+</code></pre></div>
+
+
+</div>
+
+<p>Now create the file "/etc/openvpn/creds" and add your own credentials for NordVPN:   </p>
+<div class="codehilite"><pre><span></span><code>username   
+password   
+</code></pre></div>
+
+<p>And then create a script that starts openvpn upon boot by creating "/etc/local.d/openvpn.start" and add the following:   </p>
+<div class="codehilite"><pre><span></span><code>openvpn --config /etc/openvpn/nordvpn.ovpn --auth-user-pass /etc/openvpn/creds   
+</code></pre></div>
+
+<h2 id="transmission">Transmission</h2>
+<p>Install Transmission-daemon as bittorrent client:   </p>
+<div class="codehilite"><pre><span></span><code>apk add transmission-daemon   
+</code></pre></div>
+
+<p>If you are using a SMB mounted share, you might run into permissions problems as Transmission-daemon is running as the user "transmission". You can fix this multiple ways, but the quick-fix way was to change the permissions of the daemon in the file "/etc/runlevels/default/transmission-daemon". <br />
+From:   </p>
+<div class="codehilite"><pre><span></span><code><span class="s s-Atom">runas_user=</span><span class="err">$</span><span class="p">{</span><span class="nf">runas_user</span><span class="o">:-</span><span class="s s-Atom">transmission</span><span class="p">:</span><span class="s s-Atom">transmission</span><span class="p">}</span>   
+<span class="o">~~~~</span>   
+<span class="nv">To</span>   
+</code></pre></div>
+
+<p>runas_user=${runas_user:-root:root}   </p>
+<div class="codehilite"><pre><span></span><code><span class="n">And</span><span class="w"> </span><span class="n">remember</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="s2">&quot;/var/lib/transmission/config/settings.json&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">reflect</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">setup</span><span class="o">.</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">changed</span><span class="p">:</span><span class="w">   </span>
+</code></pre></div>
+
+<p>"download-dir": "/torrents/Downloads", <br />
+"incomplete-dir": "/torrents/Incomplete", <br />
+"incomplete-dir-enabled": true, <br />
+"rpc-host-whitelist": "192.168.1.<em>,127.0.0.1", <br />
+"rpc-password": "mypassword", <br />
+"rpc-username": "myusername", <br />
+"rpc-whitelist": "192.168.1.</em>,127.0.0.1,::1", <br />
+~~~   </p>
+<p>After that you should be good to go with your new seedbox.   </p>
+<h2 id="links">Links</h2>
+<p><a href="https://janhapke.com/blog/mount-cifs-samba-fstab-alpine-linux/" class="external-link">https://janhapke.com/blog/mount-cifs-samba-fstab-alpine-linux/</a> <br />
+<a href="https://www.comparitech.com/blog/vpn-privacy/how-to-make-a-vpn-kill-switch-in-linux-with-ufw/" class="external-link">https://www.comparitech.com/blog/vpn-privacy/how-to-make-a-vpn-kill-switch-in-linux-with-ufw/</a> <br />
+<a href="https://forum.proxmox.com/threads/pve-7-openvpn-lxc-problem-cannot-open-tun-tap-dev.103081/" class="external-link">https://forum.proxmox.com/threads/pve-7-openvpn-lxc-problem-cannot-open-tun-tap-dev.103081/</a> <br />
+<a href="https://wiki.alpinelinux.org/wiki/Setting_up_Transmission_(bittorrent)_with_Clutch_WebUI" class="external-link">https://wiki.alpinelinux.org/wiki/Setting_up_Transmission_(bittorrent)_with_Clutch_WebUI</a></p></div>
+<div class="note-footer">
+<div class="tags">
+
+</div>
+
+</div>
+
+                                <!-- end content -->
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <script src="/obs.html/static/obsidian_tabs_footer.js" type="text/javascript"></script>
+
+        
+
+</body>
+</html>

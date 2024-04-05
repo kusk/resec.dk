@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+        <head>
+                <!-- Page information -->
+                <meta charset="UTF-8" />
+                <meta name="node_id" content="minkgate">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="shortcut icon" href="/favicon.ico" />
+
+                <!-- Set title -->
+                <title>resec.dk</title>
+
+                <!-- Includes -->
+                <script src="/obs.html/static/obsidian_core.js"></script>
+<script src="/obs.html/static/encoding.js"></script>
+<link rel="stylesheet" href="/obs.html/static/master.css" />
+<script src="https://unpkg.com/smiles-drawer@2.0.3/dist/smiles-drawer.min.js"></script><script src="/obs.html/static/smiles.js"></script>
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+            'securityLevel': 'loose',
+            'theme': 'dark',
+            'themeVariables': {
+                    'darkMode': true,
+            }
+    });
+</script>
+<script>
+  MathJax = {
+    loader: {
+      load: [
+        '[tex]/action',
+        'output/chtml',
+        '[tex]/centernot'
+      ]
+    },
+    tex: {
+      inlineMath: [ ["\\(","\\)"] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {'[+]': ['centernot']}
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+<script src="/obs.html/static/dirtree.js"></script>
+<link rel="stylesheet" href="/custom.css" />
+
+
+
+                <!-- Onload tweaks -->
+                <script>
+                        const CURRENT_NODE = 'minkgate';
+                        const PAGE_DEPTH = 2;
+                </script>
+        </head>
+
+<body class="theme-obs-light">
+        <div id="antiflash" style="display: none;"></div>
+        <script>
+                document.getElementById('antiflash').style.display = 'block';
+        </script>
+        
+        <div id="page_holder" class="flex_col">
+                <div id="header" class="header" style="position:fixed">
+                        <div id="header_flex" class="flex_row">
+                                <a href="/index.html" id="homelink" title="Clear screen and go to homepage">resec.dk</a>
+                                <div class="navbar-button" onclick="toggle_menu()">
+                                        ≡
+                                </div>
+                                <div id="navbar" class="navbar">
+                                        
+                                        <a href="/">resec.dk</a>
+                                        <div class="icon-tray">
+                                                
+                                                
+                                                
+                                        
+                                                
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        
+                </div>
+                <div id="header2" class="header">
+                        <div id="header_flex2" class="flex_row">
+                                <a href="/index.html" id="homelink" title="Clear screen and go to homepage">/resec.dk</a>
+                                <div class="navbar-button" onclick="toggle_menu()">
+                                        ≡
+                                </div>
+                                <div id="navbar2" class="navbar">
+                                        
+                                        <div class="icon-tray">
+                                                
+                                                
+                                                
+                                                        <div >
+            <a id="dirtree_link" class="system-link" href="/obs.html/dir_index.html" title="View directory tree">
+                    <img src = "/obs.html/static/dirtree.svg" style="width: 12px; padding: 4px;" alt="Directory tree link"/>
+            </a>
+        </div>
+                                                
+                                                
+                                        </div>
+                                </div>
+                        </div>
+                        
+                </div>
+                <div class="flex_row" id="container_row">
+                        <div class="container-wrapper ">
+                                <div class="container">
+                                <div class="content"><h1 id="minkgate-and-the-probability-of-restoring-deleted-sms">Minkgate and the probability of restoring deleted SMS</h1>
+<p>One of the big talking points in danish politics and media has lately revolved around a trail where the deletion and recovery of deleted SMS/iMessages located on politicians and officials mobilephones became important. As the trail progressed it became clear, that some of the involved parts had activated an iPhone feature where messages, SMS and iMessage, were deleted if they became older than 30 days.   </p>
+<p>The question about the chances of recreating the messages piqued my intererest resulting in the below short technical article.   </p>
+<p>As there is a wealth of unknown factors in the ongoing trail, this article should more be seen as a generic description and guide about the possibility of recovering or not recovering messages on iPhones.   </p>
+<p>However certain basic information should be defined first:   </p>
+<ul>
+<li>This test was done on a iPhone 6S(A1688) with iOS 12.1.4(Released 7/2-2019. This is a somewhat older version, however online searches shows that not much has changed regarding these functions in the later versions of iOS.   </li>
+<li>As per the statement of Statens IT, the SMS/iMessage application has not been containerized/walled by "Mobil It-Arbejdsplads(MIA)". The default configuration of the SMS/iMessage application  is therefore relevant.   </li>
+<li>There may exists iCloud syncs or local backups. These are out of scope for this article.   </li>
+</ul>
+<h2 id="breaking-in-and-looking-around">Breaking in and looking around</h2>
+<p>As iPhones only allow very limited access to the internals of iOS, a jailbreak must be performed to gain access to the device. In this case I have used <a href="https://checkra.in/" class="external-link">Checkra1n</a> to gain the nessesary access via SSH.   </p>
+<figure><img src="/Blogpost/other/Minkgate/1.png" width="" alt="SSH access to filesystem" title="SSH access to filesystem" /><figcaption>SSH access to filesystem</figcaption></figure>
+<p>Navigating the filesystem to files of interest allows us to extract the following files: <br />
+1. /private/var/mobile/Library/Preferences/com.apple.MobileSMS.plist <br />
+    1. Contains the users settings for the SMS/iMessage application in a "plist"-syntax. <br />
+2. /var/mobile/Libraryu/SMS/sms.db, /var/mobile/Libraryu/SMS/sms.db-shm, /var/mobile/Libraryu/SMS/sms.db-wal <br />
+    1. Contains the Sent, Received, Synced, etc. messages for the SMS/iMessage application. The fileformat is in the commonly used SQLite3 format.   </p>
+<p>The above listed files can be extracted to a nother host simply by using scp.   </p>
+<h2 id="autodeleting-messages">Autodeleting messages?</h2>
+<p>This configuration is set on the phone by configuring the setting at: Settings -&gt; Messages -&gt; "Keep Messages" . By changing this setting a entry called "KeepMessageForDays" is set in the "com.apple.MobileSMS.plist" file. The entry doesn't exists in the file per default. If the setting is set to either "1 Year" or "30 Days" and then reverted back to "Forever" the entry will persist, however the integer would be set to "0"(days).    </p>
+<figure><img src="/Blogpost/other/Minkgate/2.png" width="" alt="plist entry" title="plist entry" /><figcaption>plist entry</figcaption></figure>
+
+<p>There exists no entry in the plist-file noting when the "Keep Messages" have been configured. Last modified timestamp of the plist-file could indicated this, however that would require that no following changes were made to the file, which is highly unlikely.   </p>
+<p><strong>Assumption</strong>: There exists by my knowlegde no way to see when the "Keep Messages" setting has been configured.   </p>
+<h2 id="recovering-messages">Recovering messages</h2>
+<p>Both SMS and iMessages are stored in the "sms.db" SQLite3 database file. This is a commonly used format for storing local application data. Sending both a SMS and a iMessage to my test phone and extracting the database file showed the following entries:   </p>
+<figure><img src="/Blogpost/other/Minkgate/3.png" width="" alt="Message entries" title="Message entries" /><figcaption>Message entries</figcaption></figure>
+
+<p>These were saved in the "message" table of the database.   </p>
+<p>If we deleted the messages, both entries would dissapear from the database. Per default for the SQLite3 format, the actual metadata is still intact in the file. In order to actual purge the data from the SQLite3 file, such features as "secure_delete" must be utilized. Since iOS 12 the actual purge of data has been default.   </p>
+<p>If we open a SQLite3 file(left) with a message and the same SQLite3 file(right) with the same message deleted, we can confirm the actual purge of the message data at the same byte offset. No other changes were made to the file:   </p>
+<figure><img src="/Blogpost/other/Minkgate/4.png" width="" alt="Hexview Comparison" title="Hexview Comparison" /><figcaption>Hexview Comparison</figcaption></figure>
+
+<h2 id="other-ways">Other ways</h2>
+<p>So is there no way to recover deleted messages from an iPhone? No. Yes. Maybe! Filesystems and software can sometimes act weird. So if a complete image of the phones filesystem is acquired, a raw data search may yield pieces of messages that could be used in an investigation.    </p>
+<p>Below I have listed some, lets just say, less likely scenarios where relevant data might be recovered. Some of the scenarios may very well be impossible and theories that smarter people than me could disqualify easily. <br />
+1. In the event the SQLite3 database is corrupted during a write process, the system might create a new SQLite3 database file and discard the old one without overwriting it in the filesystem? <br />
+2. Other application may have permission to read and write to the SQLite3 database file. This might result in a partial copy of the messages stored elsewhere in the filesystem? <br />
+3. If the iPhone is still running an iOS version before 12, the purge of deleted SQLite3 entries might never have happened? <br />
+4. Other ways? Maybe!   </p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Nothing is certain, and smarter people might very well completely debunk  what I have written above. But my assumption is, that by deleting SMS/iMessage entries on an iPhone, the likelyhood of recovering the deleted messages are very small. And then we haven't even talked about the possibility of what a factory reset might do to leftover data. If further data is recovered during the trail, the actual "how" may never be disclosed. It might just be the discovery of a long lost local iPhone backup on a forgotten harddrive.</p></div>
+<div class="note-footer">
+<div class="tags">
+
+</div>
+
+</div>
+
+                                <!-- end content -->
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <script src="/obs.html/static/obsidian_tabs_footer.js" type="text/javascript"></script>
+
+        
+
+</body>
+</html>
